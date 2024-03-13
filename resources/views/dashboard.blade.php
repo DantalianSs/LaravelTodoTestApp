@@ -6,10 +6,10 @@
     </x-slot>
 
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex flex-row gap-3">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex flex-row gap-3 flex-wrap">
             @if($todos->count() > 0)
                 @foreach($todos as $todo)
-                    <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg basis-1/4">
+                    <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg basis-64">
                         <div class="p-6 bg-white border-b border-gray-200">
                             <h3 class="font-semibold text-xl text-gray-800 leading-tight">{{ $todo->title }}</h3>
                             <p>{{ $todo->body }}</p>
