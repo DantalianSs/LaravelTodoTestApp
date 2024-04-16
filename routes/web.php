@@ -31,6 +31,12 @@ Route::controller(TodoController::class)->middleware(['auth'])->group(function (
         Route::get('restoreAll', 'restoreAll')->name('todos.restoreAll');
         Route::get('deleteAll', 'deleteAll')->name('todos.deleteAll');
     });
+
+    Route::prefix('/admin')->middleware('admin')->group(function () {
+       Route::get('/', 'adminIndex')->name('admin-dashboard');
+       Route::get('check/{user}','adminCheck')->name('admin-check');
+       Route::get('search', 'adminSearch')->name('admin-search');
+    });
 });
 
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use App\Models\TodoItem;
@@ -94,5 +95,24 @@ class TodoController extends Controller
         }
 
         return redirect()->route('archive');
+    }
+
+    public function adminIndex()
+    {
+        $users = User::all();
+        return view('admin-dashboard', compact('users'));
+    }
+
+    public function adminCheck(User $user)
+    {
+        $todos = $user->todos()->withTrashed()->get();
+        return view('admin-check', compact("user", 'todos'));
+    }
+
+    public function adminSearch(Request $request)
+    {
+        $searchRequest = $request->searchRequest;
+        $users = User::where('name', 'like', '%' . $searchRequest . '%')->get();
+        return view('admin-dashboard', compact('users'));
     }
 }
